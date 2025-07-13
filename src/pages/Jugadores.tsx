@@ -11,10 +11,13 @@ interface Player {
   team: string
   image: string
   stats: {
-    goals: number
-    assists: number
-    matches: number
-    
+    goals: number;
+    assists: number;
+    matches: number;
+    technique: number;
+    strength: number;
+    speed: number;
+    rating: number;
   }
   description: string
   isFavorite: boolean
@@ -32,21 +35,37 @@ export default function JugadoresManagement() {
       nationality: "Ecuatoriano",
       team: "Amazonas",
       image: "",
-      stats: { goals: 15, assists: 12, matches: 25},
-      description: "Destaaaca",
+      stats: {
+        goals: 15,
+        assists: 12,
+        matches: 25,
+        technique: 80,  // Agregado
+        strength: 70,   // Agregado
+        speed: 65,      // Agregado
+        rating: 85,     // Agregado
+      },
+      description: "Destaca",
       isFavorite: true,
       marketValue: 50000000,
       contract: "2025-12-31",
     },
     {
       id: "2",
-      name: "Stiven morales",
+      name: "Stiven Morales",
       position: "Delantero",
       age: 39,
       nationality: "Ecuatoriano",
       team: "Andes",
       image: "",
-      stats: { goals: 22, assists: 8, matches: 28},
+      stats: {
+        goals: 22,
+        assists: 8,
+        matches: 28,
+        technique: 60,  // Agregado
+        strength: 65,   // Agregado
+        speed: 55,      // Agregado
+        rating: 75,     // Agregado
+      },
       description: "Malo con la pelota",
       isFavorite: false,
       marketValue: 25000000,
@@ -54,14 +73,22 @@ export default function JugadoresManagement() {
     },
     {
       id: "3",
-      name: "Robinson morocho",
+      name: "Robinson Morocho",
       position: "Arquero",
       age: 25,
       nationality: "Ecuatoriano",
       team: "Racing",
       image: "",
-      stats: { goals: 18, assists: 10, matches: 22 },
-      description: "El manos Seguras",
+      stats: {
+        goals: 18,
+        assists: 10,
+        matches: 22,
+        technique: 90,  // Agregado
+        strength: 80,   // Agregado
+        speed: 85,      // Agregado
+        rating: 95,     // Agregado
+      },
+      description: "El Manos Seguras",
       isFavorite: true,
       marketValue: 180000000,
       contract: "2029-06-30",
@@ -156,13 +183,15 @@ export default function JugadoresManagement() {
       age: Number.parseInt(formData.age),
       nationality: formData.nationality,
       team: formData.team,
-      image:
-        formData.image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
+      image: formData.image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
       stats: {
         goals: Number.parseInt(formData.goals) || 0,
         assists: Number.parseInt(formData.assists) || 0,
         matches: Number.parseInt(formData.matches) || 0,
-       
+        technique: Number.parseInt(formData.technique) || 0,
+        strength: Number.parseInt(formData.strength) || 0,
+        speed: Number.parseInt(formData.speed) || 0,
+        rating: Number.parseFloat(formData.rating) || 0,
       },
       description: formData.description,
       isFavorite: editingPlayer?.isFavorite || false,
@@ -593,9 +622,8 @@ export default function JugadoresManagement() {
           {filteredAndSortedPlayers.map((player) => (
             <div key={player.id} className={viewMode === "grid" ? "col-lg-4 col-md-6 mb-4" : "mb-3"}>
               <div
-                className={`card h-100 shadow border-0 ${
-                  compareMode && selectedForComparison.includes(player.id) ? "border-info border-3" : ""
-                } ${player.isFavorite ? "border-warning border-2" : ""}`}
+                className={`card h-100 shadow border-0 ${compareMode && selectedForComparison.includes(player.id) ? "border-info border-3" : ""
+                  } ${player.isFavorite ? "border-warning border-2" : ""}`}
                 style={{
                   background: "rgba(255,255,255,0.95)",
                   transform: "scale(1)",
@@ -628,9 +656,8 @@ export default function JugadoresManagement() {
                             {player.name}
                             {compareMode && (
                               <button
-                                className={`btn btn-sm ms-auto ${
-                                  selectedForComparison.includes(player.id) ? "btn-info" : "btn-outline-info"
-                                }`}
+                                className={`btn btn-sm ms-auto ${selectedForComparison.includes(player.id) ? "btn-info" : "btn-outline-info"
+                                  }`}
                                 onClick={() => toggleCompareSelection(player.id)}
                               >
                                 <i className="bi bi-arrow-left-right"></i>
