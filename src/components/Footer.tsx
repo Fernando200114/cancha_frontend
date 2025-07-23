@@ -156,21 +156,6 @@ const Footer: React.FC = () => {
                 </div>
               ))}
             </div>
-
-            {/* Newsletter */}
-            <div className="bg-info bg-opacity-10 p-3 rounded-3">
-              <h6 className="fw-bold mb-2 text-info">
-                <i className="bi bi-envelope-heart me-2"></i>
-                Newsletter
-              </h6>
-              <p className="text-muted mb-3 small">Recibe noticias y ofertas exclusivas</p>
-              <div className="input-group">
-                <input type="email" className="form-control" placeholder="Tu email" />
-                <button className="btn btn-info" type="button">
-                  <i className="bi bi-send"></i>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
 

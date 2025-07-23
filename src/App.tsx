@@ -1,29 +1,45 @@
-import { Routes, Route } from "react-router-dom"
-import Inicio from "./pages/Inicio"
-import Equipos from "./pages/Equipos"
-import Jugadores from "./pages/Jugadores"
-import TablaPosiciones from "./pages/TablaPosiciones"
-import Navbar from "./components/NavBar"
-import Footer from "./components/Footer"
+import { useRoutes } from "react-router-dom";
+import { appRoutes } from "./routes";
+import type { JSX } from "react";
+import { AuthProvider } from "./context/AuthContext";
 
-function App() {
-  return (
-    <div>
-      <Navbar />
-
-      <main className="container" style={{ paddingTop: "100px" }}>
-        <Routes>
-          <Route path="/" element={<Inicio />} />
-          <Route path="/equipos" element={<Equipos />} />
-          <Route path="/jugadores" element={<Jugadores />} />
-          <Route path="/tablaposiciones" element={<TablaPosiciones />} />
-        </Routes>
-      </main>
-
-      {/* ✅ Footer agregado al final */}
-      <Footer />
-    </div>
-  )
+export default function App(): JSX.Element {
+  const routes = useRoutes(appRoutes);
+   return <AuthProvider>
+      {routes}
+     </AuthProvider>;
 }
 
-export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useRoutes } from "react-router-dom";
+// import { publicRoutes } from "./routes/publicRoutes";  // Importa tus rutas públicas
+// import { privateRoutes } from "./routes/privateRoutes"; // Importa tus rutas privadas
+// import type { JSX } from "react";
+// import { AuthProvider } from "./context/AuthContext";
+
+// export const appRoutes = [publicRoutes, privateRoutes];
+
+// export default function App(): JSX.Element {
+//   const routes = useRoutes(appRoutes);
+
+//   return <AuthProvider>{routes}</AuthProvider>;
+// }
