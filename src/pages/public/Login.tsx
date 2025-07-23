@@ -221,8 +221,8 @@ export default function AuthForm() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("token"));
-  const { login, logout } = useAuth();
+  const [, setLoggedIn] = useState(!!localStorage.getItem("token"));
+  const { login, } = useAuth();
   const navigate = useNavigate();
 
   const [nameError, setNameError] = useState<string | null>(null);
@@ -303,14 +303,14 @@ export default function AuthForm() {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    localStorage.removeItem("token"); // 🧹 Limpieza del token
-    setLoggedIn(false);
-    setEmail("");
-    setPassword("");
-    setName("");
-  };
+  // const handleLogout = () => {
+  //   logout();
+  //   localStorage.removeItem("token"); // 🧹 Limpieza del token
+  //   setLoggedIn(false);
+  //   setEmail("");
+  //   setPassword("");
+  //   setName("");
+  // };
 
   return (
     <div className="container d-flex vh-100 align-items-center justify-content-center bg-light">

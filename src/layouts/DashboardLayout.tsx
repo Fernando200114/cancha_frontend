@@ -1,4 +1,4 @@
-import { useEffect, useState, type JSX } from "react";
+import { useState, type JSX } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
