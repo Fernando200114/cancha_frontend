@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react"
 import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -27,11 +28,9 @@ const ENDPOINTS = {
 }
 
 export default function PartidosApp() {
-  // Obtener token para autenticación
   const token = localStorage.getItem("token") || ""
   const isLoggedIn = !!token
 
-  // Crear instancia axios con header Authorization para operaciones protegidas
   const axiosAuth = axios.create({
     baseURL: API_BASE_URL,
     headers: {
@@ -93,6 +92,7 @@ export default function PartidosApp() {
       setEquipos(equiposTransformados)
     } catch (err) {
       console.error("Error cargando equipos", err)
+      setError("Error al cargar equipos")
     }
   }
 
@@ -104,10 +104,21 @@ export default function PartidosApp() {
         setLoading(false)
         return
       }
+
+      // Preparo payload con fecha en formato ISO completo
+      const payload = {
+        equipoLocalId: formData.equipoLocalId,
+        equipoVisitanteId: formData.equipoVisitanteId,
+        fecha: new Date(formData.fecha).toISOString(),
+        lugar: formData.lugar,
+        golesLocal: formData.golesLocal,
+        golesVisitante: formData.golesVisitante,
+      }
+
       if (editingPartido?.id) {
-        await axiosAuth.put(`/partidos/${editingPartido.id}`, formData)
+        await axiosAuth.put(`/partidos/${editingPartido.id}`, payload)
       } else {
-        await axiosAuth.post("/partidos", formData)
+        await axiosAuth.post("/partidos", payload)
       }
       await loadPartidos()
       closeModal()
@@ -145,7 +156,14 @@ export default function PartidosApp() {
   const openModal = (partido?: Partido) => {
     if (partido) {
       setEditingPartido(partido)
-      setFormData(partido)
+      setFormData({
+        equipoLocalId: partido.equipoLocalId,
+        equipoVisitanteId: partido.equipoVisitanteId,
+        fecha: partido.fecha,
+        lugar: partido.lugar,
+        golesLocal: partido.golesLocal,
+        golesVisitante: partido.golesVisitante,
+      })
     } else {
       setEditingPartido(null)
       setFormData({
@@ -176,9 +194,10 @@ export default function PartidosApp() {
   }
 
   const getEquipoNombre = (id: string) => {
-  const equipo = equipos.find((e) => e.id === id)  // usa 'id', no '_id'
-  return equipo ? equipo.nombre : "Equipo no encontrado"
-}
+    const equipo = equipos.find((e) => e.id === id)
+    return equipo ? equipo.nombre : "Equipo no encontrado"
+  }
+
   const formatFecha = (fecha: string) =>
     new Date(fecha).toLocaleString("es-ES", {
       dateStyle: "short",
@@ -284,7 +303,6 @@ export default function PartidosApp() {
         )}
       </div>
 
-      {/* Modal */}
       {showModal && (
         <div className="modal show d-block" tabIndex={-1} style={{ background: "#00000088" }}>
           <div className="modal-dialog modal-lg">
@@ -385,7 +403,6 @@ export default function PartidosApp() {
                   </div>
                 </form>
               </div>
-
               <div className="modal-footer">
                 <button className="btn btn-secondary" onClick={closeModal}>
                   Cancelar

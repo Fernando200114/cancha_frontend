@@ -13,6 +13,7 @@
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
     "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-bootstrap-icons": "^1.11.6",
     "react-dom": "^19.1.0",
@@ -30,6 +31,6 @@
     "globals": "^16.3.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.3"
+    "vite": "^7.0.5"
   }
 }

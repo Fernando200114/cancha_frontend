@@ -58,7 +58,7 @@ export default function DashboardLayout(): JSX.Element {
               width="32"
               height="32"
             />
-            <span>BlogApp Admin</span>
+            <span>Sistema de Administrador CRUD</span>
           </div>
 
           <div className="dropdown">
