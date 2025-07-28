@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import axios from "axios"
 
@@ -38,7 +37,7 @@ export default function JugadoresPublic() {
           position: p.posicion,
           age: p.edad || 0,
           nationality: "",
-          team: p.equipoId,
+          team: p.equipo,
           stats: {
             goals: p.goles || 0,
             assists: 0,
@@ -79,11 +78,8 @@ export default function JugadoresPublic() {
   })
 
   return (
-    <div className="container my-5">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2>Jugadores</h2>
-      </div>
-
+    <div className="container  pt-5 mt-5">
+      <h2 className="text-muted">Jugadores Destacados</h2>
       <div className="row g-2 mb-4">
         <div className="col-md-4">
           <input
@@ -128,7 +124,8 @@ export default function JugadoresPublic() {
                 <h5 className="card-title text-center">{player.name}</h5>
                 <div className="d-flex justify-content-between">
                   <p><strong>Posición:</strong> {player.position}</p>
-                  <p><strong>Equipo:</strong> {teamsMap[player.team] || "Sin equipo"}</p>
+                  <p><strong>Equipo:</strong> {player.team || "Sin equipo"}</p>
+
                 </div>
 
                 <div className="d-flex justify-content-center gap-3 mb-3">

@@ -71,7 +71,7 @@ export default function Jugadores() {
           position: p.posicion,
           age: p.edad || 0,
           nationality: "",
-          team: p.equipoId,
+          team: typeof p.equipo === "string" ? p.equipo : (p.equipo?._id || ""),
           stats: {
             goals: p.goles || 0,
             assists: 0,
@@ -272,7 +272,8 @@ export default function Jugadores() {
                 <h5 className="card-title text-center">{player.name}</h5>
                 <div className="d-flex justify-content-between">
                   <p><strong>Posición:</strong> {player.position}</p>
-                  <p><strong>Equipo:</strong> {teamsMap[player.team] || "Sin equipo"}</p>
+                  <p><strong>Equipo:</strong> {teamsMap[player.team] || player.team || "Sin equipo"}</p>
+
                 </div>
 
                 <div className="d-flex justify-content-center gap-3 mb-3">
