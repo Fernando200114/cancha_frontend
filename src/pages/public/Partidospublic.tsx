@@ -609,10 +609,7 @@ const Partidospublic: React.FC = () => {
           </div>
         </div>
         <div className="col-auto d-flex align-items-start">
-          <button className="btn btn-primary btn-lg" onClick={() => abrirModal()}>
-            <Plus size={20} className="me-2" />
-            Nuevo Partido
-          </button>
+       
         </div>
       </div>
 
@@ -753,13 +750,7 @@ const Partidospublic: React.FC = () => {
             Lista de Partidos ({partidosFiltrados.length})
           </h5>
           <div className="dropdown">
-            <button
-              className="btn btn-outline-secondary btn-sm dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-            >
-              Acciones
-            </button>
+            
             <ul className="dropdown-menu">
               <li>
                 <button className="dropdown-item" onClick={() => window.print()}>
@@ -795,7 +786,7 @@ const Partidospublic: React.FC = () => {
                     <th>Resultado</th>
                     <th>Estado</th>
                     <th>Árbitro</th>
-                    <th>Acciones</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -848,20 +839,8 @@ const Partidospublic: React.FC = () => {
                       </td>
                       <td>
                         <div className="btn-group btn-group-sm" role="group">
-                          <button
-                            className="btn btn-outline-primary"
-                            onClick={() => abrirModal(partido)}
-                            title="Editar partido"
-                          >
-                            <Edit size={14} />
-                          </button>
-                          <button
-                            className="btn btn-outline-danger"
-                            onClick={() => eliminarPartido(partido._id)}
-                            title="Eliminar partido"
-                          >
-                            <Trash size={14} />
-                          </button>
+                         
+                          
                         </div>
                       </td>
                     </tr>
@@ -1093,27 +1072,8 @@ const Partidospublic: React.FC = () => {
                     </div>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" onClick={cerrarModal}>
-                      Cancelar
-                    </button>
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
-                      {loading ? (
-                        <>
-                          <span className="spinner-border spinner-border-sm me-2" role="status"></span>
-                          {partidoEditando ? "Actualizando..." : "Creando..."}
-                        </>
-                      ) : partidoEditando ? (
-                        <>
-                          <Edit size={16} className="me-2" />
-                          Actualizar Partido
-                        </>
-                      ) : (
-                        <>
-                          <Plus size={16} className="me-2" />
-                          Crear Partido
-                        </>
-                      )}
-                    </button>
+                   
+                   
                   </div>
                 </form>
               </div>
