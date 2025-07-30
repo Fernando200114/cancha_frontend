@@ -121,14 +121,14 @@ export default function Equipos() {
     setImagenArchivo(null);
     setEditando(false);
     setMostrarFormulario(false);
-    
+
   };
 
   const editarEquipo = (equipo: Equipo) => {
     setEquipoActual(equipo);
     setEditando(true);
     setMostrarFormulario(true);
-    
+
     setImagenArchivo(null);
   };
 
@@ -189,7 +189,7 @@ export default function Equipos() {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container" style={{ paddingTop: "100px" }}>
       <h1>Liga de Equipos</h1>
 
       <div className="mb-3 d-flex gap-3">

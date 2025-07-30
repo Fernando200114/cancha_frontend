@@ -50,9 +50,8 @@ const Navbar: React.FC = () => {
             <small className="text-light opacity-75">Tu pasión, nuestro compromiso</small>
           </div>
         </NavLink>
-
-        {/* Botón hamburguesa */}
-        <button
+    
+       <button
           className="navbar-toggler border-0"
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -60,6 +59,7 @@ const Navbar: React.FC = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
 
         {/* Menú */}
         <div className={`collapse navbar-collapse ${isMenuOpen ? "show" : ""}`}>
@@ -69,8 +69,7 @@ const Navbar: React.FC = () => {
                 <NavLink
                   to={item.path}
                   className={({ isActive }) =>
-                    `nav-link fw-semibold position-relative overflow-hidden px-3 py-2 rounded ${
-                      isActive ? "active bg-white bg-opacity-25 text-dark" : "text-white"
+                    `nav-link fw-semibold position-relative overflow-hidden px-3 py-2 rounded ${isActive ? "active bg-white bg-opacity-25 text-dark" : "text-white"
                     }`
                   }
                   style={{ transition: "all 0.3s ease" }}
