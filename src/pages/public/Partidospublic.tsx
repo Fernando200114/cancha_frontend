@@ -414,38 +414,7 @@ const Partidospublic: React.FC = () => {
     setPartidosFiltrados(filtrados)
   }
 
-  const abrirModal = (partido?: Partido) => {
-    if (partido) {
-      setPartidoEditando(partido)
-      setFormData({
-        equipoLocalId: partido.equipoLocalId,
-        equipoVisitanteId: partido.equipoVisitanteId,
-        fecha: partido.fecha,
-        hora: partido.hora,
-        lugar: partido.lugar,
-        golesLocal: partido.golesLocal,
-        golesVisitante: partido.golesVisitante,
-        estado: partido.estado,
-        liga: partido.liga,
-        arbitro: partido.arbitro || "",
-      })
-    } else {
-      setPartidoEditando(null)
-      setFormData({
-        equipoLocalId: "",
-        equipoVisitanteId: "",
-        fecha: "",
-        hora: "",
-        lugar: "",
-        golesLocal: undefined,
-        golesVisitante: undefined,
-        estado: "programado",
-        liga: "",
-        arbitro: "",
-      })
-    }
-    setShowModal(true)
-  }
+
 
   const cerrarModal = () => {
     setShowModal(false)
@@ -473,20 +442,20 @@ const Partidospublic: React.FC = () => {
     }
   }
 
-  const eliminarPartido = async (id: string) => {
-    if (window.confirm("¿Estás seguro de que quieres eliminar este partido?")) {
-      try {
-        const response = await api.eliminarPartido(id)
-        if (response.success) {
-          mostrarAlert(response.message || "Partido eliminado", "success")
-        } else {
-          mostrarAlert(response.error || "Error al eliminar", "danger")
-        }
-      } catch (error) {
-        mostrarAlert("Error inesperado al eliminar", "danger")
-      }
-    }
-  }
+  // const eliminarPartido = async (id: string) => {
+  //   if (window.confirm("¿Estás seguro de que quieres eliminar este partido?")) {
+  //     try {
+  //       const response = await api.eliminarPartido(id)
+  //       if (response.success) {
+  //         mostrarAlert(response.message || "Partido eliminado", "success")
+  //       } else {
+  //         mostrarAlert(response.error || "Error al eliminar", "danger")
+  //       }
+  //     } catch (error) {
+  //       mostrarAlert("Error inesperado al eliminar", "danger")
+  //     }
+  //   }
+  // }
 
   const mostrarAlert = (message: string, variant: string) => {
     setAlert({ show: true, message, variant })
