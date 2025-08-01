@@ -665,18 +665,7 @@ const Partidospublic: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="col-md-2">
-              <div className="mb-3">
-                <label className="form-label">Liga</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Filtrar por liga"
-                  value={filtros.liga}
-                  onChange={(e) => setFiltros({ ...filtros, liga: e.target.value })}
-                />
-              </div>
-            </div>
+            
           </div>
           <div className="d-flex gap-2">
             <button
