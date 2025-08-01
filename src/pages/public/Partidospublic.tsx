@@ -397,19 +397,24 @@ const Partidospublic: React.FC = () => {
     }
 
     if (filtros.busqueda) {
-      const busq = filtros.busqueda.toLowerCase()
-      filtrados = filtrados.filter((p) => {
-        const equipoLocal = equipos.find((e) => e._id === p.equipoLocalId)?.nombre.toLowerCase() ?? ""
-        const equipoVisitante = equipos.find((e) => e._id === p.equipoVisitanteId)?.nombre.toLowerCase() ?? ""
-        return (
-          equipoLocal.includes(busq) ||
-          equipoVisitante.includes(busq) ||
-          p.lugar.toLowerCase().includes(busq) ||
-          p.liga.toLowerCase().includes(busq) ||
-          (p.arbitro && p.arbitro.toLowerCase().includes(busq))
-        )
-      })
-    }
+  const busq = filtros.busqueda.toLowerCase()
+  filtrados = filtrados.filter((p) => {
+    const equipoLocal = (equipos.find((e) => e._id === p.equipoLocalId)?.nombre || "").toLowerCase()
+    const equipoVisitante = (equipos.find((e) => e._id === p.equipoVisitanteId)?.nombre || "").toLowerCase()
+    const lugar = (p.lugar || "").toLowerCase()
+    const liga = (p.liga || "").toLowerCase()
+    const arbitro = (p.arbitro || "").toLowerCase()
+
+    return (
+      equipoLocal.includes(busq) ||
+      equipoVisitante.includes(busq) ||
+      lugar.includes(busq) ||
+      liga.includes(busq) ||
+      arbitro.includes(busq)
+    )
+  })
+}
+
 
     setPartidosFiltrados(filtrados)
   }
@@ -442,20 +447,6 @@ const Partidospublic: React.FC = () => {
     }
   }
 
-  // const eliminarPartido = async (id: string) => {
-  //   if (window.confirm("¿Estás seguro de que quieres eliminar este partido?")) {
-  //     try {
-  //       const response = await api.eliminarPartido(id)
-  //       if (response.success) {
-  //         mostrarAlert(response.message || "Partido eliminado", "success")
-  //       } else {
-  //         mostrarAlert(response.error || "Error al eliminar", "danger")
-  //       }
-  //     } catch (error) {
-  //       mostrarAlert("Error inesperado al eliminar", "danger")
-  //     }
-  //   }
-  // }
 
   const mostrarAlert = (message: string, variant: string) => {
     setAlert({ show: true, message, variant })
