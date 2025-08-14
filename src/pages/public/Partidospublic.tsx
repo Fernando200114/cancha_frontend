@@ -374,9 +374,22 @@ const Partidospublic: React.FC = () => {
         filtrados = filtrados.filter((p) => p.estado === "jugado")
         break
     }
+  
+    if (filtros.fecha) {
+      const fechaFiltro = new Date(filtros.fecha)
 
     if (filtros.fecha) {
-      filtrados = filtrados.filter((p) => p.fecha === filtros.fecha)
+  filtrados = filtrados.filter((p) => p.fecha === filtros.fecha)
+}
+
+      filtrados = filtrados.filter((p) => {
+        const fechaPartido = new Date(p.fecha)
+        return (
+          fechaPartido.getFullYear() === fechaFiltro.getFullYear() &&
+          fechaPartido.getMonth() === fechaFiltro.getMonth() &&
+          fechaPartido.getDate() === fechaFiltro.getDate()
+        )
+      })
     }
 
     if (filtros.fechaInicio && filtros.fechaFin) {
@@ -384,9 +397,11 @@ const Partidospublic: React.FC = () => {
         const fPartido = new Date(p.fecha)
         const fInicio = new Date(filtros.fechaInicio)
         const fFin = new Date(filtros.fechaFin)
+        fFin.setHours(23, 59, 59, 999) // Asegura incluir partidos de todo ese día
         return fPartido >= fInicio && fPartido <= fFin
       })
     }
+
 
     if (filtros.estado) {
       filtrados = filtrados.filter((p) => p.estado === filtros.estado)
@@ -397,23 +412,24 @@ const Partidospublic: React.FC = () => {
     }
 
     if (filtros.busqueda) {
-  const busq = filtros.busqueda.toLowerCase()
-  filtrados = filtrados.filter((p) => {
-    const equipoLocal = (equipos.find((e) => e._id === p.equipoLocalId)?.nombre || "").toLowerCase()
-    const equipoVisitante = (equipos.find((e) => e._id === p.equipoVisitanteId)?.nombre || "").toLowerCase()
-    const lugar = (p.lugar || "").toLowerCase()
-    const liga = (p.liga || "").toLowerCase()
-    const arbitro = (p.arbitro || "").toLowerCase()
 
-    return (
-      equipoLocal.includes(busq) ||
-      equipoVisitante.includes(busq) ||
-      lugar.includes(busq) ||
-      liga.includes(busq) ||
-      arbitro.includes(busq)
-    )
-  })
-}
+      const busq = filtros.busqueda.toLowerCase()
+      filtrados = filtrados.filter((p) => {
+        const equipoLocal = (equipos.find((e) => e._id === p.equipoLocalId)?.nombre || "").toLowerCase()
+        const equipoVisitante = (equipos.find((e) => e._id === p.equipoVisitanteId)?.nombre || "").toLowerCase()
+        const lugar = (p.lugar || "").toLowerCase()
+        const liga = (p.liga || "").toLowerCase()
+        const arbitro = (p.arbitro || "").toLowerCase()
+
+        return (
+          equipoLocal.includes(busq) ||
+          equipoVisitante.includes(busq) ||
+          lugar.includes(busq) ||
+          liga.includes(busq) ||
+          arbitro.includes(busq)
+        )
+      })
+    }
 
 
     setPartidosFiltrados(filtrados)
@@ -569,7 +585,7 @@ const Partidospublic: React.FC = () => {
           </div>
         </div>
         <div className="col-auto d-flex align-items-start">
-       
+
         </div>
       </div>
 
@@ -643,29 +659,7 @@ const Partidospublic: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="col-md-2">
-              <div className="mb-3">
-                <label className="form-label">Desde</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  value={filtros.fechaInicio}
-                  onChange={(e) => setFiltros({ ...filtros, fechaInicio: e.target.value })}
-                />
-              </div>
-            </div>
-            <div className="col-md-2">
-              <div className="mb-3">
-                <label className="form-label">Hasta</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  value={filtros.fechaFin}
-                  onChange={(e) => setFiltros({ ...filtros, fechaFin: e.target.value })}
-                />
-              </div>
-            </div>
-            
+
           </div>
           <div className="d-flex gap-2">
             <button
@@ -699,7 +693,7 @@ const Partidospublic: React.FC = () => {
             Lista de Partidos ({partidosFiltrados.length})
           </h5>
           <div className="dropdown">
-            
+
             <ul className="dropdown-menu">
               <li>
                 <button className="dropdown-item" onClick={() => window.print()}>
@@ -735,7 +729,7 @@ const Partidospublic: React.FC = () => {
                     <th>Resultado</th>
                     <th>Estado</th>
                     <th>Árbitro</th>
-                    
+
                   </tr>
                 </thead>
                 <tbody>
@@ -771,8 +765,8 @@ const Partidospublic: React.FC = () => {
                       </td>
                       <td>
                         {partido.estado === "jugado" &&
-                        partido.golesLocal !== undefined &&
-                        partido.golesVisitante !== undefined ? (
+                          partido.golesLocal !== undefined &&
+                          partido.golesVisitante !== undefined ? (
                           <div className="text-center">
                             <span className="fw-bold fs-5">
                               {partido.golesLocal} - {partido.golesVisitante}
@@ -788,8 +782,8 @@ const Partidospublic: React.FC = () => {
                       </td>
                       <td>
                         <div className="btn-group btn-group-sm" role="group">
-                         
-                          
+
+
                         </div>
                       </td>
                     </tr>
@@ -1021,8 +1015,8 @@ const Partidospublic: React.FC = () => {
                     </div>
                   </div>
                   <div className="modal-footer">
-                   
-                   
+
+
                   </div>
                 </form>
               </div>

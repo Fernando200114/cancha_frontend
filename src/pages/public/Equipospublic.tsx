@@ -104,7 +104,7 @@ export default function Equipos() {
           <tr>
             <th>Escudo</th>
             <th>Nombre</th>
-            <th>Ciudad</th>
+            <th>Sector</th>
             <th>Dueño Equipo</th>
             <th>Puntos</th>
           </tr>
