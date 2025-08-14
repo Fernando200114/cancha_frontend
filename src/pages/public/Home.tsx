@@ -47,7 +47,7 @@ const Home: React.FC = () => {
     },
     {
       id: 3,
-      image: "/imagenes/imagen3.jpg",
+      image: "/imagenes/video.mp4",
       title: "Torneos Emocionantes",
       description: "Competencias que desafían tus límites y celebran el espíritu deportivo",
       cta: "Inscribirse",
@@ -130,17 +130,41 @@ const Home: React.FC = () => {
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`position-absolute w-100 h-100 transition-all ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
+              className={`position-absolute w-100 h-100 transition-all ${index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
               style={{
-                backgroundImage: `url(${slide.image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 transform: `translateY(${scrollY * 0.5}px)`,
                 transition: "opacity 1s ease-in-out",
               }}
             >
+              {slide.image.endsWith(".mp4") ? (
+                <video
+                  src={slide.image}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: `url(${slide.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              )}
+
+
               <div className="position-absolute w-100 h-100 bg-dark bg-opacity-50"></div>
               <div className="position-absolute top-50 start-50 translate-middle text-center text-white w-100 px-4">
                 <div className="container">
