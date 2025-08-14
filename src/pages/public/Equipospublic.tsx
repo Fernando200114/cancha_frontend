@@ -75,9 +75,7 @@ export default function Equipos() {
   }, [equipos, busqueda, filtroOrden]);
 
   return (
-    <div className="container" style={{ paddingTop: "200px" }}>
-
-
+    <div className="container" style={{ paddingTop: "50px" }}>
       <h1>Liga de Equipos</h1>
 
       <div className="mb-3 d-flex gap-3">

@@ -47,7 +47,7 @@ const Home: React.FC = () => {
     },
     {
       id: 3,
-      image: "/imagenes/video.mp4",
+      image: "/imagenes/videofinal.mp4",
       title: "Torneos Emocionantes",
       description: "Competencias que desafían tus límites y celebran el espíritu deportivo",
       cta: "Inscribirse",
