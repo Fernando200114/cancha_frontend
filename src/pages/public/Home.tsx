@@ -67,7 +67,7 @@ const Home: React.FC = () => {
       id: 2,
       icon: "🏆",
       title: "Excelencia Deportiva",
-      description: "6 campeonatos ganados en los últimos 4 años",
+      description: "3 años de experencia en campeonatos deportivos",
       color: "warning",
       delay: 200,
     },
@@ -203,9 +203,9 @@ const Home: React.FC = () => {
           <div className="row text-center">
             {[
               { icon: "👥", number: "100", label: "Jugadores Activos" },
-              { icon: "🏆", number: "2", label: "Torneos Anuales" },
-              { icon: "⭐", number: "4", label: "Años de Experiencia" },
-              { icon: "🏟", number: "1", label: "Campos Premium" },
+              { icon: "🏆", number: "1", label: "Torneos Anuales" },
+              { icon: "⭐", number: "3", label: "Años de Experiencia" },
+              { icon: "🏟", number: "1", label: "Campos" },
             ].map((stat, index) => (
               <div key={index} className="col-6 col-md-3 mb-3 mb-md-0">
                 <div
@@ -297,7 +297,7 @@ const Home: React.FC = () => {
                     <i className="bi bi-telephone-fill fs-4 me-3"></i>
                     <div>
                       <div className="fw-semibold">Teléfono</div>
-                      <div>0988825960</div>
+                      <div>+593 99 834 3517</div>
                     </div>
                   </div>
                 </div>
