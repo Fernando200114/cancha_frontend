@@ -376,35 +376,20 @@ const Partidospublic: React.FC = () => {
     }
 
     if (filtros.fecha) {
-  const filtroDate = new Date(filtros.fecha)
-  
-  // Función para comparar solo año, mes y día
-  const esMismaFecha = (fecha1: Date, fecha2: Date) => {
-    return (
-      fecha1.getFullYear() === fecha2.getFullYear() &&
-      fecha1.getMonth() === fecha2.getMonth() &&
-      fecha1.getDate() === fecha2.getDate()
-    )
-  }
+      filtrados = filtrados.filter((p) => p.fecha === filtros.fecha)
+    }
 
-  filtrados = filtrados.filter((p) => {
-    const pFecha = new Date(p.fecha)
-    return esMismaFecha(pFecha, filtroDate)
-  })
-
-} else if (filtros.fechaInicio && filtros.fechaFin) {
-  const fInicio = new Date(filtros.fechaInicio)
-  const fFin = new Date(filtros.fechaFin)
-
-  // Ajustamos fFin para que incluya hasta el último momento del día
   
 
-  filtrados = filtrados.filter((p) => {
-    const fPartido = new Date(p.fecha)
-    return fPartido >= fInicio && fPartido <= fFin
-  })
-}
 
+  if (filtros.fechaInicio && filtros.fechaFin) {
+      filtrados = filtrados.filter((p) => {
+        const fPartido = new Date(p.fecha)
+        const fInicio = new Date(filtros.fechaInicio)
+        const fFin = new Date(filtros.fechaFin)
+        return fPartido >= fInicio && fPartido <= fFin
+      })
+    }
 
 
     if (filtros.estado) {
@@ -502,19 +487,15 @@ const Partidospublic: React.FC = () => {
         return <span className="badge bg-secondary">{estado}</span>
     }
   }
- const parseFechaDDMMYYYY = (fechaStr: string): Date => {
-  const [dia, mes, anio] = fechaStr.split("/")
-  return new Date(Number(anio), Number(mes) - 1, Number(dia))
-}
+ 
 
-const formatearFecha = (fecha: string) => {
-  const fechaDate = parseFechaDDMMYYYY(fecha)
-  return fechaDate.toLocaleDateString("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
-}
+ const formatearFecha = (fecha: string) => {
+    return new Date(fecha).toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  }
 
   const obtenerEstadisticas = () => {
     const total = partidos.length
