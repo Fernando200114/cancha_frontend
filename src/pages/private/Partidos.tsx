@@ -1347,7 +1347,7 @@ const PartidosApp: React.FC = () => {
                                       type="number"
                                       className="form-control"
                                       min="0"
-                                      max="20"
+                                      max="40"
                                       value={formData.golesLocal || ""}
                                       onChange={(e) =>
                                         setFormData({
@@ -1365,7 +1365,7 @@ const PartidosApp: React.FC = () => {
                                       type="number"
                                       className="form-control"
                                       min="0"
-                                      max="20"
+                                      max="40"
                                       value={formData.golesVisitante || ""}
                                       onChange={(e) =>
                                         setFormData({
