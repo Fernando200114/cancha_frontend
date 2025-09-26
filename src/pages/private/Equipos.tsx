@@ -49,8 +49,8 @@ export default function Equipos() {
     const cargarEquiposYPosiciones = async () => {
       try {
         const [equiposRes, posicionesRes] = await Promise.all([
-          axios.get("https://nestjs-cancha-backend-api.desarrollo-software.xyz/equipos", { headers }),
-          axios.get("https://nestjs-cancha-backend-api.desarrollo-software.xyz/tabla-posiciones", { headers }),
+          axios.get("https://cancha-backend-4.onrender.com/equipos", { headers }),
+          axios.get("https://cancha-backend-4.onrender.com/tabla-posiciones", { headers }),
         ]);
 
         const equiposData = equiposRes.data;
@@ -135,7 +135,7 @@ export default function Equipos() {
   const eliminarEquipo = async (_id: string) => {
     if (!token) return console.error("No hay token para autenticación.");
     try {
-      await axios.delete(`https://nestjs-cancha-backend-api.desarrollo-software.xyz/equipos/${_id}`, {
+      await axios.delete(`https://cancha-backend-4.onrender.com/equipos/${_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEquipos(equipos.filter((eq) => eq._id !== _id));
@@ -165,8 +165,8 @@ export default function Equipos() {
       }
 
       const endpoint = editando
-        ? `https://nestjs-cancha-backend-api.desarrollo-software.xyz/equipos/${equipoActual._id}`
-        : `https://nestjs-cancha-backend-api.desarrollo-software.xyz/equipos`;
+        ? `https://cancha-backend-4.onrender.com/equipos/${equipoActual._id}`
+        : `https://cancha-backend-4.onrender.com/equipos/`;
 
       const method = editando ? axios.put : axios.post;
 
@@ -178,7 +178,7 @@ export default function Equipos() {
       });
 
       // Refrescar lista
-      const res = await axios.get("https://nestjs-cancha-backend-api.desarrollo-software.xyz/equipos", {
+      const res = await axios.get("https://cancha-backend-4.onrender.com/equipos/", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEquipos(res.data);
@@ -301,7 +301,7 @@ export default function Equipos() {
                     src={
                       (equipo.escudoUrl ?? "").startsWith("data:image")
                         ? equipo.escudoUrl
-                        : `https://nestjs-cancha-backend-api.desarrollo-software.xyz/static/imagenes/${equipo.escudoUrl || "default.png"}`
+                        : `https://cancha-backend-4.onrender.com/equipos/static/imagenes/${equipo.escudoUrl || "default.png"}`
                     }
                     alt={equipo.nombre}
                     width={50}

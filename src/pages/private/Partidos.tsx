@@ -468,7 +468,7 @@ interface ApiResponse<T> {
 }
 
 // ==================== CONFIGURACIÓN AXIOS ====================
-const API_BASE_URL = "https://nestjs-cancha-backend-api.desarrollo-software.xyz/"
+const API_BASE_URL = "https://cancha-backend-4.onrender.com/"
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,

@@ -267,7 +267,7 @@ export default function AuthForm() {
 
     setLoading(true);
     try {
-      const baseURL = "https://nestjs-cancha-backend-api.desarrollo-software.xyz";
+      const baseURL = "https://cancha-backend-4.onrender.com/";
       const endpoint = isLogin ? "/auth/login" : "/auth/register";
       const payload = isLogin
         ? { correo: email, password }

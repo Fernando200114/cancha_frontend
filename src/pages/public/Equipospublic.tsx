@@ -23,8 +23,8 @@ export default function Equipos() {
     const cargarEquiposYPosiciones = async () => {
       try {
         const [equiposRes, posicionesRes] = await Promise.all([
-          axios.get("https://nestjs-cancha-backend-api.desarrollo-software.xyz/equipos"),
-          axios.get("https://nestjs-cancha-backend-api.desarrollo-software.xyz/tabla-posiciones"),
+          axios.get("https://cancha-backend-4.onrender.com/equipos"),
+          axios.get("https://cancha-backend-4.onrender.com/tabla-posiciones"),
         ]);
 
         const equiposData = equiposRes.data;
@@ -113,7 +113,7 @@ export default function Equipos() {
               <tr key={equipo._id}>
                 <td>
                   <img
-                    src={`https://nestjs-cancha-backend-api.desarrollo-software.xyz/static/imagenes/${equipo.escudoUrl || "default.png"}`}
+                    src={`https://cancha-backend-4.onrender.com/static/imagenes/${equipo.escudoUrl || "default.png"}`}
                     alt={equipo.nombre}
                     width={50}
                     height={50}

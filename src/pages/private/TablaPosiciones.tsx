@@ -897,7 +897,7 @@ type SortDirection = "asc" | "desc"
 const token = localStorage.getItem("token") || ""
 
 const axiosAuth = axios.create({
-  baseURL: "https://nestjs-cancha-backend-api.desarrollo-software.xyz",
+  baseURL: "https://cancha-backend-4.onrender.com/",
   headers: {
     Authorization: `Bearer ${token}`,
   },
